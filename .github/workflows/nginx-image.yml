@@ -1,0 +1,38 @@
+name: Build Frontend Image
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: set timestamp
+      id: date
+      run: echo "::set-output name=date::$(date +'%s')"
+
+    - uses: actions/checkout@v2
+    - name: Install doctl                 # install the doctl on the runner
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: login to registry
+      run: |
+        doctl registry login
+        docker login https://registry.digitalocean.com/supernice-k8s-registry
+
+    - name: Build the Docker image
+      run: |
+        docker build . --file backend/Dockerfile --tag backend:$GITHUB_SHA
+        docker image ls
+
+    - name: push image to digitalocean
+      run: |
+        docker tag backend:$GITHUB_SHA registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
+        docker push registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
