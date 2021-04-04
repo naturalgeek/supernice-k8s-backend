@@ -1,0 +1,1 @@
+[![Build Frontend Image](https://github.com/naturalgeek/supernice-k8s-backend/actions/workflows/nginx-image.yml/badge.svg)](https://github.com/naturalgeek/supernice-k8s-backend/actions/workflows/nginx-image.yml)
