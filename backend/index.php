@@ -1,3 +1,3 @@
 <?php
-print("fancy backend app");
+print('{"wow":"fancy backend app"}');
 ?>
