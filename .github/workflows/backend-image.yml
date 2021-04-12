@@ -43,3 +43,5 @@ jobs:
     - name: Deploy
       run: kubectl set image deployments/backend-dmt backend-cnt=registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA --record
 
+    - name: verify deployment
+      run: kubectl rollout status deployment/backend-dmt
