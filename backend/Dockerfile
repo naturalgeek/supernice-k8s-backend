@@ -1,4 +1,5 @@
-FROM registry.digitalocean.com/supernice-k8s-registry/nginx:24e7b613aeb3a8f1eed8c2a072625b0b869af855
-RUN echo "very simple backend application" > /var/www/html/index.html
+FROM registry.digitalocean.com/supernice-k8s-registry/nginx:76f510f0e86ffd8a9f5641863d2c6a569caa3416
+RUN echo "very simple frontend application" > /var/www/html/index.html
+ADD frontend/index.php /var/www/html/info.php
 EXPOSE 80
-CMD ["nginx"]
+CMD ["/usr/bin/supervisord","-n","-c","/etc/supervisord.conf"]
