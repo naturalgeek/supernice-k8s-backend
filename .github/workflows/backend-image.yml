@@ -41,5 +41,5 @@ jobs:
       run: doctl kubernetes cluster kubeconfig save supernice-k8s-cluster
 
     - name: Deploy
-      run: kubectl set image deployments/backend-dmt backend-dmt=https://registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
+      run: kubectl set image deployments/backend-dmt backend-cnt=https://registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
 
