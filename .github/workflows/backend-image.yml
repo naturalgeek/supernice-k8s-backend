@@ -36,3 +36,10 @@ jobs:
       run: |
         docker tag backend:$GITHUB_SHA registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
         docker push registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
+
+    - name: Save DigitalOcean kubeconfig
+      run: doctl kubernetes cluster kubeconfig save testing-cluster
+
+    - name: Deploy
+      run: kubectl set image deployments/backend-dmt backend-dmt=https://registry.digitalocean.com/supernice-k8s-registry/backend:$GITHUB_SHA
+
