@@ -1,4 +1,4 @@
-FROM registry.digitalocean.com/supernice-k8s-registry/nginx:76f510f0e86ffd8a9f5641863d2c6a569caa3416
+FROM registry.digitalocean.com/supernice-k8s-registry/nginx:55fee892733901fbdea9b91d38e64e043e5f8d73
 ADD backend/index.php /var/www/html/index.php
 ADD backend/pools_www.conf /etc/php/7.3/fpm/pool.d/www.conf
 EXPOSE 80
